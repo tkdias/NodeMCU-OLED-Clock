@@ -45,17 +45,15 @@ void setup()
 
   display.println("Wifi Connected!");
   display.print("IP:");
-  display.println(WiFi.localIP() );
-  display.display(); //
+  display.println(WiFi.localIP() );   // Print the IP.
+  display.display();
   delay(500);
 
-  configTime(timezone, dst, "pool.ntp.org", "time.nist.gov" );
-  //configTime(0, 0, "lk.pool.ntp.org");
+  configTime(timezone, dst, "pool.ntp.org", "time.nist.gov" );   // get time from the remote server.
   display.println("\nWaiting for NTP...");
 
   while (!time(nullptr)) {
     Serial.print("*");
-
     delay(1000);
   }
   display.println("\nTime response....OK");
@@ -65,14 +63,12 @@ void setup()
   display.clearDisplay();
   display.display();
 
-
-
 }
 
 void loop()
 {
 
-time_t now = time(nullptr);
+  time_t now = time(nullptr);
   struct tm* p_tm = localtime(&now);
 
   Serial.print(p_tm->tm_mday);
@@ -120,5 +116,5 @@ time_t now = time(nullptr);
   display.display();
 
   delay(1000); // update every 1 sec
-  
+
 }
